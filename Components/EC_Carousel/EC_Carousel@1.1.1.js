@@ -139,7 +139,6 @@ class EC_Carousel {
 
             // containerInner.style.scrollBehavior = "initial
 
-
             document.removeEventListener('mousemove', mouseMoveHandler);
             document.removeEventListener('mouseup', mouseUpHandler);
         };
@@ -310,7 +309,7 @@ class EC_Carousel {
                 // leftArrow_find.classList.remove("disable");
                 enableLeft();
                 disableRight()
-                if (responsiveInit.infiniteRight && atual + 1 > max ) {
+                if (responsiveInit.infiniteRight && atual + 1 > max) {
                     containerInner.style.scrollBehavior = "smooth";
                     containerInner.scrollLeft = 0;
                     countStep = 0;
@@ -339,6 +338,7 @@ class EC_Carousel {
             countStep -= 1;
             arrowHandle(countStep, isNumberMax, "left");
             dotActiveHandle();
+            autoPlayInit();
         })
 
         //NEXT
@@ -346,6 +346,7 @@ class EC_Carousel {
             countStep += 1;
             arrowHandle(countStep, isNumberMax, "right")
             dotActiveHandle();
+            autoPlayInit();
         })
 
 
@@ -400,7 +401,8 @@ class EC_Carousel {
                     setTimeout(() => {
                         countStep = index;
                         dotActiveHandle();
-                        arrowHandle(countStep, isNumberMax)
+                        arrowHandle(countStep, isNumberMax);
+                        autoPlayInit();
                     }, 80);
                 })
             }
@@ -410,25 +412,30 @@ class EC_Carousel {
         dotsHandleClick();
         dotActiveHandle();
 
-
         //TEMPORIZADOR
         let intervalNumber;
+        let isPaused = false;
         function autoPlayInit() {
             clearInterval(intervalNumber);
+            intervalNumber = null;
             function interval() {
                 const initialInterval = setInterval(() => {
-                    if (countStep === isNumberMax - 1) {
-                        countStep = 0;
-                    } else { countStep += 1; }
-                    arrowHandle(countStep, isNumberMax);
-                    dotActiveHandle();
+                    if (!isPaused) {
+                        if (countStep === isNumberMax - 1) {
+                            countStep = 0;
+                        } else { countStep += 1; }
+                        arrowHandle(countStep, isNumberMax);
+                        dotActiveHandle();
+                    }
                 }, responsiveInit.autoPlay_time)
                 return initialInterval;
             }
             intervalNumber = interval();
-            containerInner.addEventListener("mousemove", () => clearInterval(intervalNumber))
-            containerInner.addEventListener("mouseleave", () => { intervalNumber = interval() });
+            console.log({ intervalNumber });
+            containerInner.addEventListener("mousemove", () => isPaused = true)
+            containerInner.addEventListener("mouseleave", () => isPaused = false);
         }
+
         if (responsiveInit.autoPlay) autoPlayInit();
 
 

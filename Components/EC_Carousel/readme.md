@@ -86,7 +86,7 @@ Você pode customizar as setas inserindo **imagens de setas**, colocando seu `im
     </div>
 ```
 
-insere os id's de acordo com o que estão acima e em seguida inserir as imagens de seta da forma que quizer.
+insere os id's de acordo com o que estão acima e em seguida inserir as imagens de seta da forma que quiser.
  
 
 

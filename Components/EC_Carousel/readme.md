@@ -37,6 +37,8 @@ carousel.init();
 
 **autoPlay_time** - Tempo estimado para a inicialização do scroll automático, o padrão é 3000 milisegundos (3 segundos).
 
+**infiniteRight** - Habilitar funcionalidade de clique no arrow right ele voltar para o início quando estiver no final da lista. O padrão é `false`.
+
 ### responsive
 
 Array de objeto onde cada objeto aceita as mesmas propriedades do config e uma propriedade chamada **mediaPoint**, 
@@ -64,5 +66,28 @@ var carousel = new EC_Carousel("#carousel-init");
     })
 carousel.init();
 ```
+### **setas**
+
+Você pode customizar as setas inserindo **imagens de setas**, colocando seu `img` e suas respectivas classes:
+
+### Exemplo
+
+```html
+       <div id="carousel-init">     
+            <img id="arrow-left" src="./img/arrow left.png" alt="left">
+            <img id="arrow-right" src="./img/arrow right.png" alt="right">
+            <img id="arrow-left-disable" src="./img/arrow left disable.png" alt="leftDisable">
+            <img id="arrow-right-disable" src="./img/arrow right disable.png" alt="rightDisable">
+
+        
+            <div class="exemplo-item"></div>
+            <div class="exemplo-item"></div>
+            <div class="exemplo-item"></div>
+    </div>
+```
+
+insere os id's de acordo com o que estão acima e em seguida inserir as imagens de seta da forma que quizer.
+ 
+
 
 

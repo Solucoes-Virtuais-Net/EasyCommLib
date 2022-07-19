@@ -6,6 +6,7 @@ class EC_Carousel {
     distanceItems = 20
     autoPlay = false
     autoPlay_time = 3000
+    infiniteRight = false
     responsive = []
     //CONFIGURAÇÕES
     config({
@@ -13,13 +14,15 @@ class EC_Carousel {
         distanceItems,
         autoPlay,
         autoPlay_time,
-        responsive
+        responsive,
+        infiniteRight
     }) {
         if (numberItems) this.numberItems = numberItems;
         if (distanceItems) this.distanceItems = distanceItems;
         if (autoPlay) this.autoPlay = autoPlay;
         if (autoPlay_time) this.autoPlay_time = autoPlay_time;
         if (responsive) this.responsive = responsive;
+        if (infiniteRight) this.infiniteRight = infiniteRight;
     }
 
     //INICIALIZAÇÃO
@@ -280,9 +283,11 @@ class EC_Carousel {
             }
 
             function disableRight() {
-                rightArrow_find.classList.add("disable");
-                if (arrowImageRight_disable !== null)
-                    rightArrow_find.src = arrowImageRight_disable.src;
+                if (!responsiveInit.infiniteRight) {
+                    rightArrow_find.classList.add("disable");
+                    if (arrowImageRight_disable !== null)
+                        rightArrow_find.src = arrowImageRight_disable.src;
+                }
             }
 
 
@@ -305,6 +310,12 @@ class EC_Carousel {
                 // leftArrow_find.classList.remove("disable");
                 enableLeft();
                 disableRight()
+                if (responsiveInit.infiniteRight && atual + 1 > max ) {
+                    containerInner.style.scrollBehavior = "smooth";
+                    containerInner.scrollLeft = 0;
+                    countStep = 0;
+                    disableLeft();
+                }
             }
 
             if (direction === "left") {

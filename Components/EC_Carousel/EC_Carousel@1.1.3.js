@@ -77,6 +77,11 @@ class EC_Carousel {
 
             for (let index = 0; index < container_filhos.length; index++) {
                 var containerItem = container_filhos[index];
+                var itemsImage = containerItem.querySelectorAll("img")
+                itemsImage.forEach(e => {
+                    e.setAttribute("draggable", "false");
+                })
+
                 var fragment = document.createDocumentFragment();
                 // containerItem.style.pointerEvents = 'none';
                 var DICs = document.querySelectorAll(`${ref} .sv-list > .sv-DIC`);
@@ -98,6 +103,20 @@ class EC_Carousel {
         }
 
         loadListCarousel();
+
+        const listItem_find = containerInner.querySelectorAll(".sv-DIC > div");
+
+      
+        function disableAllItemClickable(){
+            listItem_find.forEach(e => {
+                e.style.pointerEvents = "none";
+            })
+        }
+        function enableAllItemClickable(){
+            listItem_find.forEach(e => {
+                e.style.pointerEvents = "inherit";
+            })
+        }        
 
         //Evento de mouse
         let pos = { top: 0, left: 0, x: 0, y: 0 };
@@ -134,7 +153,7 @@ class EC_Carousel {
 
         const mouseMoveHandler = function (e) {
             containerInner.style.scrollBehavior = "auto"
-
+            disableAllItemClickable();
 
             // How far the mouse has been moved
             let dx;
@@ -161,10 +180,13 @@ class EC_Carousel {
             // containerInner.style.scrollBehavior = "initial
 
 
+
+
             document.removeEventListener('mousemove', mouseMoveHandler);
             document.removeEventListener('mouseup', mouseUpHandler);
             window.removeEventListener('touchmove', mouseMoveHandler);
             window.removeEventListener('touchend', mouseUpHandler);
+            enableAllItemClickable();
         };
         containerInner.addEventListener('mousedown', mouseDownHandler);
         containerInner.addEventListener('touchstart', mouseDownHandler);
@@ -225,7 +247,7 @@ class EC_Carousel {
             arrows.appendChild(arrowImageLeft);
         }
 
-        const leftArrow_find = arrows.querySelector(".left");
+        const leftArrow_find = arrows.querySelector(".left")
         leftArrow_find.classList.add("disable");
         leftArrow_find.appendChild(arrowIconCreate("left"))
 

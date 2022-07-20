@@ -37,7 +37,7 @@ carousel.init();
 
 **autoPlay_time** - Tempo estimado para a inicialização do scroll automático, o padrão é 3000 milisegundos (3 segundos).
 
-**infiniteRight** - Habilitar funcionalidade de clique no arrow right ele voltar para o início quando estiver no final da lista. O padrão é `false`.
+**returnToInitItem** - Habilitar funcionalidade de clique no arrow right ele voltar para o início quando estiver no final da lista. O padrão é `false`.
 
 ### responsive
 

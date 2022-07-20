@@ -6,7 +6,7 @@ class EC_Carousel {
     distanceItems = 20
     autoPlay = false
     autoPlay_time = 3000
-    infiniteRight = false
+    returnToInitItem = false
     responsive = []
     //CONFIGURAÇÕES
     config({
@@ -15,14 +15,14 @@ class EC_Carousel {
         autoPlay,
         autoPlay_time,
         responsive,
-        infiniteRight
+        returnToInitItem
     }) {
         if (numberItems) this.numberItems = numberItems;
         if (distanceItems) this.distanceItems = distanceItems;
         if (autoPlay) this.autoPlay = autoPlay;
         if (autoPlay_time) this.autoPlay_time = autoPlay_time;
         if (responsive) this.responsive = responsive;
-        if (infiniteRight) this.infiniteRight = infiniteRight;
+        if (returnToInitItem) this.returnToInitItem = returnToInitItem;
     }
 
     //INICIALIZAÇÃO
@@ -107,25 +107,46 @@ class EC_Carousel {
             containerInner.style.userSelect = 'none';
             containerInner.style.scrollSnapType = "none";
             containerInner.style.scrollBehavior = "smooth"
-
-            pos = {
-                left: containerInner.scrollLeft,
-                top: containerInner.scrollTop,
-                // Get the current mouse position
-                x: e.clientX,
-                y: e.clientY,
-            };
+            // console.log({ e })
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                pos = {
+                    left: containerInner.scrollLeft,
+                    top: containerInner.scrollTop,
+                    // Get the current mouse position
+                    x: e.changedTouches[0].clientX,
+                    y: e.changedTouches[0].clientY,
+                };
+            } else {
+                pos = {
+                    left: containerInner.scrollLeft,
+                    top: containerInner.scrollTop,
+                    // Get the current mouse position
+                    x: e.clientX,
+                    y: e.clientY,
+                };
+            }
 
             document.addEventListener('mousemove', mouseMoveHandler);
             document.addEventListener('mouseup', mouseUpHandler);
+            document.addEventListener('touchmove', mouseMoveHandler);
+            document.addEventListener('touchstart', mouseUpHandler);
         };
 
         const mouseMoveHandler = function (e) {
             containerInner.style.scrollBehavior = "auto"
 
+
             // How far the mouse has been moved
-            const dx = e.clientX - pos.x;
-            const dy = e.clientY - pos.y;
+            let dx;
+            let dy;
+
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                dx = e.changedTouches[0].clientX - pos.x;
+                dy = e.changedTouches[0].clientY - pos.y;
+            } else {
+                dx = e.clientX - pos.x;
+                dy = e.clientY - pos.y;
+            }
 
             // Scroll the element
             containerInner.scrollTop = pos.top - dy;
@@ -139,10 +160,14 @@ class EC_Carousel {
 
             // containerInner.style.scrollBehavior = "initial
 
+
             document.removeEventListener('mousemove', mouseMoveHandler);
             document.removeEventListener('mouseup', mouseUpHandler);
+            window.removeEventListener('touchmove', mouseMoveHandler);
+            window.removeEventListener('touchend', mouseUpHandler);
         };
         containerInner.addEventListener('mousedown', mouseDownHandler);
+        containerInner.addEventListener('touchstart', mouseDownHandler);
 
 
         // ARROWS
@@ -260,6 +285,7 @@ class EC_Carousel {
 
         }
         containerInner.addEventListener("mouseup", () => step())
+        containerInner.addEventListener("touchend", () => step())
 
         function arrowHandle(atual, max, direction) {
             // console.log({ atual, max })
@@ -282,7 +308,7 @@ class EC_Carousel {
             }
 
             function disableRight() {
-                if (!responsiveInit.infiniteRight) {
+                if (!responsiveInit.returnToInitItem) {
                     rightArrow_find.classList.add("disable");
                     if (arrowImageRight_disable !== null)
                         rightArrow_find.src = arrowImageRight_disable.src;
@@ -309,7 +335,7 @@ class EC_Carousel {
                 // leftArrow_find.classList.remove("disable");
                 enableLeft();
                 disableRight()
-                if (responsiveInit.infiniteRight && atual + 1 > max) {
+                if (responsiveInit.returnToInitItem && atual + 1 > max) {
                     containerInner.style.scrollBehavior = "smooth";
                     containerInner.scrollLeft = 0;
                     countStep = 0;
@@ -409,6 +435,7 @@ class EC_Carousel {
         }
 
         containerInner.addEventListener("mouseup", dotActiveHandle)
+        containerInner.addEventListener("touchend", dotActiveHandle)
         dotsHandleClick();
         dotActiveHandle();
 
@@ -431,9 +458,10 @@ class EC_Carousel {
                 return initialInterval;
             }
             intervalNumber = interval();
-            console.log({ intervalNumber });
             containerInner.addEventListener("mousemove", () => isPaused = true)
             containerInner.addEventListener("mouseleave", () => isPaused = false);
+            containerInner.addEventListener("touchmove", () => isPaused = true)
+            containerInner.addEventListener("touchend", () => isPaused = false);
         }
 
         if (responsiveInit.autoPlay) autoPlayInit();

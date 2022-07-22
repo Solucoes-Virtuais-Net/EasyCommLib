@@ -1,0 +1,114 @@
+$tarjaDefault: #e4e4e4 !default;
+$navbar-border: #e8e8e8 !default;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+div[ec-tarja] {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $tarjaDefault;
+    padding: 6px;
+}
+
+div[ec-navbar] {
+    padding: 8px;
+    padding-bottom: 32px;
+    height: 100%;
+    border-bottom: 1px solid $navbar-border;
+    
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    @media (max-width: 762px) {
+    grid-template-columns: 1fr 1fr 1fr ;
+    }
+    grid-template-rows: 1fr auto;
+    
+    [ec-logo], [ec-logo] img {
+        width: 100%;
+        height: 80px;
+        object-fit: cover;
+        //  grid-column-start: 1;
+        grid-row-start: 1;
+    }
+
+    div[ec-options] {
+        // grid-column-start: 4;
+        grid-row-start: 1;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        span{
+            padding: 8px;
+        }
+    }
+}
+
+div[ec-bottom-options] {
+    position: relative;
+    padding: 8px;
+    width: 100%;
+    ul {
+        display: flex;
+        justify-content: center;
+        list-style: none !important;
+
+        li {
+            &[id].active {
+                color: #469;
+                position: relative;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 0;
+                    height: 0;
+                    border-left: 10px solid transparent;
+                    border-right: 10px solid transparent;
+                    border-bottom: 10px solid #f5f5f5;    
+                }
+            }
+
+            a {
+                padding: 8px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+div[ec-drop-target] {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 420px;
+    background: #f5f5f5;
+    padding: 20px;
+    transition: .6s ease;
+
+    &.hide {
+        display: none;
+    }
+
+    &.show {
+        display: block;
+    }
+}
+
+// RESPONSIVE MOBILE
+
+nav[id].mobile {
+    div[ec-options] {
+        background: "#548";
+    }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/EC_navbar.min.css">
+
+    <!-- APENAS ICONES DE EXEMPLO -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>exemplo</title>
+</head>
+
+<body>
+    <main>
+
+        <nav id="init">
+            <div ec-tarja>
+                Frete grátis
+            </div>
+            <div ec-navbar>
+                <a ec-logo href="#!">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"
+                        alt="logo">
+                </a>
+                <div ec-options>
+                    <span class="material-symbols-outlined">
+                        search
+                    </span>
+                    <span class="material-symbols-outlined">
+                        person
+                    </span>
+                    <span class="material-symbols-outlined">
+                        local_mall
+                    </span>
+                </div>
+            </div>
+            <div ec-bottom-options>
+                <ul>
+                    <li id="exemplo1">
+                        <a>exemplo1</a>
+                    </li>
+                    <li id="exemplo2">
+                        <a>exemplo2</a>
+                    </li>
+                </ul>
+                <div ec-drop-target="exemplo1">
+                    exemplo1
+                </div>
+                <div ec-drop-target="exemplo2">
+                    exemplo2
+                </div>
+            </div>
+            <div>
+            </div>
+        </nav>
+
+        asdsa
+
+
+    </main>
+
+    <script src="/EC_Navbar@1.0.0.js"></script>
+    <script>
+        var item = new EC_Navbar("#init");
+        item.Config({
+            logoAlignX: "center",
+            toolsAlignX: "end",
+            logoAlignY: "start",
+            toolsAlignY: "start",
+            responsive: [
+                {
+                    mediaPoint: 762,
+                    logoAlignX: "center",
+                    toolsAlignX: "center",
+                    logoAlignY: "start",
+                    toolsAlignY: "start",
+                }
+            ]
+        })
+        item.Init();
+
+        // fetch("https://api.awsli.com.br/v1/categoria?format=json&chave_api=1d3c8c69d4b2b92a59bb&chave_aplicacao=dfa334b6-912c-4c8b-b2a9-d2eb91987ef3", {
+        //         // mode: "no-cors",
+        //         method: "GET",
+        //     })
+        //         .then(res=> res.json())
+        //         .then((res) => {
+        //         console.log({"dasd": res})
+        //     })
+        //         .catch(err => {
+        //         console.log({ "error": err });
+        //     });
+
+    </script>
+</body>
+
+</html>

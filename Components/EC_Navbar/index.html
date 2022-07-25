@@ -19,7 +19,6 @@
 
 <body>
     <main>
-
         <nav id="init">
             <div ec-tarja>
                 Frete grátis
@@ -40,6 +39,14 @@
                         local_mall
                     </span>
                 </div>
+                <div ec-mobile-button>
+                    <span class="material-symbols-outlined">
+                        menu
+                    </span>
+                </div>
+            </div>
+            <div ec-context-menu-mobile>
+                click
             </div>
             <div ec-bottom-options>
                 <ul>
@@ -57,30 +64,35 @@
                     exemplo2
                 </div>
             </div>
-            <div>
-            </div>
         </nav>
 
-        asdsa
-
+        <div style="height: 120vh;">
+            asds
+        </div>
 
     </main>
 
-    <script src="/EC_Navbar@1.0.0.js"></script>
+    <script src="/EC_Navbar@1.1.0.js"></script>
     <script>
         var item = new EC_Navbar("#init");
         item.Config({
+            navbarFixed: true,
             logoAlignX: "center",
             toolsAlignX: "end",
             logoAlignY: "start",
             toolsAlignY: "start",
+            scrollyOnlyNavbar: false,
+            scrollyOnlyNavbarPositionX_logo: "start",
+            scrollyOnlyNavbarPositionX_options: "end",
+            scrollyOnlyNavbarPositionX_bottomOptions: "center",
+
             responsive: [
                 {
                     mediaPoint: 762,
                     logoAlignX: "center",
                     toolsAlignX: "center",
                     logoAlignY: "start",
-                    toolsAlignY: "start",
+                    toolsAlignY: "start"
                 }
             ]
         })

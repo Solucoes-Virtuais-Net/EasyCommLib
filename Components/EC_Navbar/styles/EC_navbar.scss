@@ -17,18 +17,19 @@ div[ec-tarja] {
 }
 
 div[ec-navbar] {
-    padding: 8px;
-    padding-bottom: 32px;
+    // padding: 8px;
+    // padding-bottom: 32px;
     height: 100%;
     border-bottom: 1px solid $navbar-border;
     
     display: grid;
+    align-items: center;
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     @media (max-width: 762px) {
-    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-columns: 1fr 1fr 1fr;
     }
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 1fr;
     
     [ec-logo], [ec-logo] img {
         width: 100%;
@@ -54,12 +55,16 @@ div[ec-bottom-options] {
     position: relative;
     padding: 8px;
     width: 100%;
+    height: 100%;
     ul {
         display: flex;
         justify-content: center;
         list-style: none !important;
+    height: 100%;
 
         li {
+            display: flex;
+            align-items: center;
             &[id].active {
                 color: #469;
                 position: relative;
@@ -94,7 +99,7 @@ div[ec-drop-target] {
     height: 420px;
     background: #f5f5f5;
     padding: 20px;
-    transition: .6s ease;
+    // transition: .6s ease;
 
     &.hide {
         display: none;
@@ -105,10 +110,57 @@ div[ec-drop-target] {
     }
 }
 
-// RESPONSIVE MOBILE
-
 nav[id].mobile {
     div[ec-options] {
         background: "#548";
     }
 }
+
+div[ec-navbar] {
+    div[ec-bottom-options] {
+        padding: 0 !important;
+        ul {
+            li {
+                &[id].active {
+                    &:before {
+                        top: auto;
+                        bottom: 0 !important;
+                    }              
+                }           
+            }
+        }
+    }
+
+        div[ec-drop-target]  {
+                position: fixed !important;
+                width: 100vw;
+        }
+} 
+
+    //MOBILE
+
+    div[ec-mobile-button] {
+        display: none;
+        @media (max-width: 762px) {
+            display: flex !important;
+        }
+        cursor: pointer;
+        z-index: 9;
+        position: fixed;
+        right: 20px;
+    }
+
+    div[ec-context-menu-mobile] {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #fff;
+        padding: 20px;
+        z-index: 8;
+        &.show {
+            display: block;
+        }
+    }

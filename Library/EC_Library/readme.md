@@ -2,6 +2,12 @@
 
 Biblioteca de acesso eo api da loja integrada de maneira extremamente fácil.
 
+> Implementação
+```javascript
+        <script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Library/EC_Library/EC_Library%401.0.0.js"></script>
+```
+
+
  A **EC_Library** é uma classe e que você precisa chamá-la e inserir a **chave_api** como parâmetro 
   ```javascript
  const api = new EC_Library("{chave_api}");

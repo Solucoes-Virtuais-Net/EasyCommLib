@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo</title>
+</head>
+
+<body>
+
+
+    <div teste>
+
+    </div>
+
+
+    <script src="./EC_Library.js"></script>
+    <script>
+        const Api = new EC_Library("1d3c8c69d4b2b92a59bb");
+        document.addEventListener("DOMContentLoaded", async () => {
+
+            const grades = await Api.Grade();
+
+            const produto = await Api.Produto();
+
+            const imagemProduto = await Api.ImagensProduto("166287780");
+            // const hrefImagemProduto = Api.ImagemVisualizar(imagemProduto.objects[1].caminho);
+            
+            imagemProduto.objects.forEach(i => {
+                const img = document.createElement("img");
+                img.src = Api.ImagemVisualizar(i.caminho);
+                document.querySelector("div[teste]").appendChild(img);
+            })
+
+            console.log({ situacao, HistoricoSituacao });
+        })
+    </script>
+</body>
+
+</html>

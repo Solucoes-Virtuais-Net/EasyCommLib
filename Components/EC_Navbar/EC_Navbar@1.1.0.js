@@ -217,7 +217,10 @@ class EC_Navbar {
             else
                 updateAlignItems(responsiveInit.logoAlignX, responsiveInit.logoAlignY, responsiveInit.toolsAlignX, responsiveInit.toolsAlignY);
         }
-        window.addEventListener("resize", renderResponsive);
+        document.addEventListener("DOMContentLoaded", () => {
+            renderResponsive();
+            onlyNavbarScrolling();
+        });
         document.addEventListener("DOMContentLoaded", renderResponsive);
     }
 }

@@ -12,7 +12,7 @@ class EC_Navbar {
         this.scrollyOnlyNavbarPositionX_bottomOptions = "end";
         this.navbarRef = navbarRef;
     }
-    Config({ logoAlignX, logoAlignY, toolsAlignX, toolsAlignY, responsive, navbarFixed, scrollyOnlyNavbar, scrollyOnlyNavbarPositionX_logo, scrollyOnlyNavbarPositionX_options, scrollyOnlyNavbarPositionX_bottomOptions }) {
+    Config({ logoAlignX, logoAlignY, toolsAlignX, toolsAlignY, responsive, navbarFixed, scrollyOnlyNavbar, scrollyOnlyNavbarPositionX_logo, scrollyOnlyNavbarPositionX_options, scrollyOnlyNavbarPositionX_bottomOptions, scrollyBackground, scrollyBackgroundTop }) {
         if (logoAlignX)
             this.logoAlignX = logoAlignX;
         if (toolsAlignX)
@@ -27,6 +27,10 @@ class EC_Navbar {
             this.navbarFixed = navbarFixed;
         if (scrollyOnlyNavbar)
             this.scrollyOnlyNavbar = scrollyOnlyNavbar;
+        if (scrollyBackground)
+            this.scrollyBackground = scrollyBackground;
+        if (scrollyBackgroundTop)
+            this.scrollyBackgroundTop = scrollyBackgroundTop;
         if (scrollyOnlyNavbarPositionX_logo)
             this.scrollyOnlyNavbarPositionX_logo = scrollyOnlyNavbarPositionX_logo;
         if (scrollyOnlyNavbarPositionX_options)
@@ -118,18 +122,45 @@ class EC_Navbar {
         toggleContextDrop();
         function valiableFixedNavbar() {
             if (responsiveInit.navbarFixed) {
-                containerInit.style.cssText = `position: fixed; width: 100%; `;
+                const windowScroll = window.scrollY;
+                if (windowScroll > 0) {
+                    containerInit.style.cssText = `position: fixed; width: 100%; `;
+                }
+                else {
+                    containerInit.style.cssText = `position: relative; width: 100%; `;
+                }
             }
             else {
                 containerInit.style.cssText = `position: relative; width: 100%; `;
             }
         }
-        valiableFixedNavbar();
+        function variableBackgroundNavbar() {
+            const { scrollyBackground, scrollyBackgroundTop } = responsiveInit;
+            const windowScroll = window.scrollY;
+            if (windowScroll > 0) {
+                if (scrollyBackground)
+                    containerInit.style.background = scrollyBackground;
+                else
+                    containerInit.style.background = "#fff";
+            }
+            else {
+                if (scrollyBackgroundTop)
+                    containerInit.style.background = scrollyBackgroundTop;
+                else
+                    containerInit.style.background = "#fff";
+            }
+        }
+        window.addEventListener("scroll", () => {
+            valiableFixedNavbar();
+            variableBackgroundNavbar();
+        });
+        window.addEventListener("DOMContentLoaded", () => {
+            valiableFixedNavbar();
+            variableBackgroundNavbar();
+        });
         function valiablePositionScrollOnly() {
             const isTop = window.scrollY === 0;
             if (!isTop) {
-                const navbarScroll = document.querySelector(`${navbarRef} [ec-bottom-options]`);
-                // console.log(navbarScroll)
                 alignHandler(responsiveInit.scrollyOnlyNavbarPositionX_logo, "start", logo);
                 alignHandler(responsiveInit.scrollyOnlyNavbarPositionX_options, "start", option);
             }

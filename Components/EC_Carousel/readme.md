@@ -1,7 +1,6 @@
-# EC-Carousel
+# EC-Carousel@1.1.4
 
 componente javascript que se transforma em um carousel customizado e responsivo.
-
 
 ***Exemplo uso HTML***
 

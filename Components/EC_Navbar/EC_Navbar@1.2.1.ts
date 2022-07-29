@@ -133,7 +133,7 @@ class EC_Navbar {
             })
         }
         toggleContextDrop();
-        
+
         function valiableFixedNavbar() {
             if (responsiveInit.navbarFixed) {
                 const windowScroll = window.scrollY;
@@ -186,58 +186,58 @@ class EC_Navbar {
 
         function onlyNavbarScrolling() {
             const navbar = containerInit.querySelector("[ec-navbar]");
-            console.log({ navbar })
-            const bottomOption: HTMLElement = containerInit.querySelector("[ec-bottom-options]");
-
-
-            function movingBottomOptions() {
-                const isTop = window.scrollY === 0;
-                const navbarScroll: HTMLElement = document.querySelector(`${navbarRef} [ec-navbar] [ec-bottom-options]`);
-                if (!isTop) {
-                    if (!navbarScroll) {
-                        navbar.appendChild(bottomOption);
-                        const divSaved = document.createElement("div");
-                        divSaved.setAttribute("ec-save-local", "");
-                        navbar.parentNode.insertBefore(divSaved, navbar.nextSibling);
-                        // alignHandler("center", "start", navbarScroll)
-                    }
-                } else {
-                    if (navbarScroll) {
-                        const savedLocalBottom = containerInit.querySelector("[ec-save-local]");
-                        savedLocalBottom.after(bottomOption);
-                        savedLocalBottom.remove();
-                    }
-                }
-            }
-
-            function positionStylingBottomOption() {
-                const isTop = window.scrollY === 0;
-                const navbarScroll: HTMLElement = document.querySelector(`${navbarRef} [ec-navbar] [ec-bottom-options]`);
-                const drops: NodeListOf<HTMLElement> = containerInit.querySelectorAll("[ec-drop-target]");
-
-                if (!isTop) {
-                    if (navbarScroll) {
-                        navbarScroll.style.gridColumnEnd = "span 5"
-                        navbarScroll.style.gridRowStart = "1";
-                        drops.forEach(d => d.style.top = `${containerInit.clientHeight}px`);
-                    }
-                } else {
-                    if (!navbarScroll) {
-                        bottomOption.removeAttribute("style");
-                        drops.forEach(d => d.removeAttribute("style"));
+            if (window.innerWidth > 762) {
+                const bottomOption: HTMLElement = containerInit.querySelector("[ec-bottom-options]");
+                function movingBottomOptions() {
+                    const isTop = window.scrollY === 0;
+                    const navbarScroll: HTMLElement = document.querySelector(`${navbarRef} [ec-navbar] [ec-bottom-options]`);
+                    if (!isTop) {
+                        if (!navbarScroll) {
+                            navbar.appendChild(bottomOption);
+                            const divSaved = document.createElement("div");
+                            divSaved.setAttribute("ec-save-local", "");
+                            navbar.parentNode.insertBefore(divSaved, navbar.nextSibling);
+                            // alignHandler("center", "start", navbarScroll)
+                        }
+                    } else {
+                        if (navbarScroll) {
+                            const savedLocalBottom = containerInit.querySelector("[ec-save-local]");
+                            savedLocalBottom.after(bottomOption);
+                            savedLocalBottom.remove();
+                        }
                     }
                 }
-            }
 
-            if (bottomOption) {
-                window.addEventListener("scroll", () => {
-                    movingBottomOptions();
-                    positionStylingBottomOption();
-                })
+                function positionStylingBottomOption() {
+                    const isTop = window.scrollY === 0;
+                    const navbarScroll: HTMLElement = document.querySelector(`${navbarRef} [ec-navbar] [ec-bottom-options]`);
+                    const drops: NodeListOf<HTMLElement> = containerInit.querySelectorAll("[ec-drop-target]");
+
+                    if (!isTop) {
+                        if (navbarScroll) {
+                            navbarScroll.style.gridColumnEnd = "span 5"
+                            navbarScroll.style.gridRowStart = "1";
+                            drops.forEach(d => d.style.top = `${containerInit.clientHeight}px`);
+                        }
+                    } else {
+                        if (!navbarScroll) {
+                            bottomOption.removeAttribute("style");
+                            drops.forEach(d => d.removeAttribute("style"));
+                        }
+                    }
+                }
+                if (bottomOption) {
+                    window.addEventListener("scroll", () => {
+                        movingBottomOptions();
+                        positionStylingBottomOption();
+                    })
+                }
             }
         }
 
-        if (responsiveInit.scrollyOnlyNavbar) onlyNavbarScrolling();
+        if (responsiveInit.scrollyOnlyNavbar) {
+            document.addEventListener("DOMContentLoaded", onlyNavbarScrolling);
+        }
 
 
         function toggleMobile() {
@@ -258,6 +258,37 @@ class EC_Navbar {
         }
 
         toggleMobile();
+
+        function ContextMenuToMobileContext() {
+            const options = containerInit.querySelector("[ec-options]")
+            const mobileContext = containerInit.querySelector("[ec-context-menu-mobile]")
+            const navbar = containerInit.querySelector("[ec-navbar]");
+            const bottomContext = containerInit.querySelector("[ec-bottom-options]");
+            const windowWidth = window.innerWidth;
+
+            //options
+            if (windowWidth < 762)
+                mobileContext.appendChild(options);
+            else {
+                const optionsInContextMobile = containerInit.querySelector("[ec-context-menu-mobile] [ec-options]");
+                if (optionsInContextMobile)
+                    navbar.appendChild(optionsInContextMobile);
+            }
+            updateAlignItems(responsiveInit.logoAlignX, responsiveInit.logoAlignY, responsiveInit.toolsAlignX, responsiveInit.toolsAlignY);
+
+            //bottom-options
+            if (windowWidth < 762) {
+                mobileContext.appendChild(bottomContext);
+            } else {
+                const bottomContextMobile = containerInit.querySelector("[ec-context-menu-mobile] [ec-bottom-options]");
+                if (bottomContextMobile) {
+                    navbar.parentNode.insertBefore(bottomContext, navbar.nextSibling);
+                }
+            }
+        }
+
+        window.addEventListener("resize", ContextMenuToMobileContext)
+        document.addEventListener("DOMContentLoaded", ContextMenuToMobileContext)
 
         function renderResponsive() {
             const windowWidth = window.innerWidth;

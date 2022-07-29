@@ -1,4 +1,4 @@
-# EC_Navbar (v1.1.0)
+# EC_Navbar (v1.2.1)
 
 Primeiro componente navbar para ecommerce.
 
@@ -9,9 +9,8 @@ Primeiro componente navbar para ecommerce.
 
 > inserindo o javascript
  ```javascript
-<script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Navbar/EC_Navbar%401.1.0.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Navbar/EC_Navbar%401.2.1.js"></script>
 ```
-
 
 ## Exemplo
 

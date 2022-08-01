@@ -46,7 +46,7 @@ class EC_Navbar {
         const navbarOptions = containerInit.querySelectorAll(`${navbarRef} li[id]`);
         var responsiveInit = { ...this };
         function alignHandler(itemAlignX, itemAlignY, item) {
-            if (window.innerWidth >= 1024) {
+            if (window.innerWidth > 1023) {
                 switch (itemAlignX) {
                     case "center":
                         item.style.gridColumnStart = "4";
@@ -173,7 +173,7 @@ class EC_Navbar {
             window.addEventListener("scroll", valiablePositionScrollOnly);
         function onlyNavbarScrolling() {
             const navbar = containerInit.querySelector("[ec-navbar]");
-            if (window.innerWidth > 1024) {
+            if (window.innerWidth > 1023) {
                 const bottomOption = containerInit.querySelector("[ec-bottom-options]");
                 function movingBottomOptions() {
                     const isTop = window.scrollY === 0;
@@ -249,7 +249,7 @@ class EC_Navbar {
             const bottomContext = containerInit.querySelector("[ec-bottom-options]");
             const windowWidth = window.innerWidth;
             //options
-            if (windowWidth < 1024)
+            if (windowWidth < 1023)
                 mobileContext.appendChild(options);
             else {
                 const optionsInContextMobile = containerInit.querySelector("[ec-context-menu-mobile] [ec-options]");
@@ -258,7 +258,7 @@ class EC_Navbar {
             }
             updateAlignItems(responsiveInit.logoAlignX, responsiveInit.logoAlignY, responsiveInit.toolsAlignX, responsiveInit.toolsAlignY);
             //bottom-options
-            if (windowWidth < 1024) {
+            if (windowWidth < 1023) {
                 mobileContext.appendChild(bottomContext);
             }
             else {
@@ -272,7 +272,7 @@ class EC_Navbar {
         document.addEventListener("DOMContentLoaded", ContextMenuToMobileContext);
         function renderResponsive() {
             const windowWidth = window.innerWidth;
-            const findPoint = responsive?.filter(e => e.mediaPoint >= windowWidth).pop();
+            const findPoint = responsive?.filter(e => e.mediaPoint > windowWidth).pop();
             if (findPoint)
                 updateAlignItems(findPoint.logoAlignX, findPoint.logoAlignY, findPoint.toolsAlignX, findPoint.toolsAlignY);
             else

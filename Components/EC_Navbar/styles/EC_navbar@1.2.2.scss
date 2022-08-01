@@ -26,7 +26,7 @@ div[ec-navbar] {
     align-items: center;
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    @media (max-width: 1024px) {
+    @media (max-width: 1023px) {
     grid-template-columns: 1fr 1fr 1fr;
     }
     grid-template-rows: 1fr;
@@ -141,7 +141,7 @@ div[ec-navbar] {
 
     div[ec-mobile-button] {
         display: none;
-        @media (max-width: 1024px) {
+        @media (max-width: 1023px) {
             display: flex !important;
         }
         cursor: pointer;

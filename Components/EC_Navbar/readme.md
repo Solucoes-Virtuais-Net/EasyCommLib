@@ -4,12 +4,12 @@ Primeiro componente navbar para ecommerce.
 
 > inserindo o css
 ```html
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Navbar/styles/EC_navbar.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Navbar/styles/EC_navbar@1.2.1.min.css">
 ```
 
 > inserindo o javascript
  ```javascript
-<script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Navbar/EC_Navbar%401.2.1.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Navbar/EC_Navbar%401.2.2.js"></script>
 ```
 
 ## Exemplo

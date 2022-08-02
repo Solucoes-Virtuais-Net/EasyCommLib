@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento</title>
+</head>
+
+
+<body>
+    <div style="height: 160px;">
+        <div id="carousel-init">
+            <div class="exemplo-item">
+                <div>
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi esse officiis enim eaque facere ullam hic nihil neque magni voluptas.
+                    </p>
+                </div>
+        </div>
+        <div class="exemplo-item">
+            <img src="https://picsum.photos/360/700" />
+            
+        </div>
+        <div class="exemplo-item">
+            <img src="https://picsum.photos/360/700" />
+        </div>
+        <div class="exemplo-item">
+            <img src="https://picsum.photos/360/700" />
+        </div>
+        <div class="exemplo-item">
+            <img src="https://picsum.photos/360/700" />
+        </div>
+    </div>
+</div>
+    <script src="./EC_Carousel@1.1.4.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Carousel/EC_Carousel%401.1.4.min.js"></script> -->
+    <script>
+
+        const c = new EC_Carousel("#carousel-init");
+        c.config({
+            numberItems: 3
+        })
+        c.init();
+
+    </script>
+</body>
+
+</html>

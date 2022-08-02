@@ -1,152 +1,140 @@
 class EC_Navbar {
-    navbarRef: string;
-    constructor(navbarRef: string) {
+    constructor(navbarRef) {
+        //Configs
+        this.navbarFixed = false;
+        this.scrollyOnlyNavbar = false;
+        this.logoAlignX = "center";
+        this.toolsAlignX = "end";
+        this.logoAlignY = "start";
+        this.toolsAlignY = "start";
+        this.scrollyOnlyNavbarPositionX_logo = "center";
+        this.scrollyOnlyNavbarPositionX_options = "start";
+        this.scrollyOnlyNavbarPositionX_bottomOptions = "end";
         this.navbarRef = navbarRef;
     }
-
-    //Configs
-    navbarFixed: boolean = false;
-    scrollyOnlyNavbar = false;
-    logoAlignX: alignX = "center";
-    toolsAlignX: alignX = "end";
-    logoAlignY: alignY = "start";
-    toolsAlignY: alignY = "start";
-    scrollyBackgroundTop: string;
-    scrollyBackground: string;
-
-    scrollyOnlyNavbarPositionX_logo: alignX = "center";
-    scrollyOnlyNavbarPositionX_options: alignX = "start";
-    scrollyOnlyNavbarPositionX_bottomOptions: alignX = "end";
-
-    responsive: IResponsive[];
-
-    Config({
-        logoAlignX,
-        logoAlignY,
-        toolsAlignX,
-        toolsAlignY,
-        responsive,
-        navbarFixed,
-        scrollyOnlyNavbar,
-        scrollyOnlyNavbarPositionX_logo,
-        scrollyOnlyNavbarPositionX_options,
-        scrollyOnlyNavbarPositionX_bottomOptions,
-        scrollyBackground,
-        scrollyBackgroundTop
-    }) {
-        if (logoAlignX) this.logoAlignX = logoAlignX;
-        if (toolsAlignX) this.toolsAlignX = toolsAlignX;
-        if (logoAlignY) this.logoAlignY = logoAlignY;
-        if (toolsAlignY) this.toolsAlignY = toolsAlignY;
-        if (responsive) this.responsive = responsive;
-        if (navbarFixed) this.navbarFixed = navbarFixed;
-        if (scrollyOnlyNavbar) this.scrollyOnlyNavbar = scrollyOnlyNavbar;
-
-        if (scrollyBackground) this.scrollyBackground = scrollyBackground;
-        if (scrollyBackgroundTop) this.scrollyBackgroundTop = scrollyBackgroundTop;
-
-        if (scrollyOnlyNavbarPositionX_logo) this.scrollyOnlyNavbarPositionX_logo = scrollyOnlyNavbarPositionX_logo;
-        if (scrollyOnlyNavbarPositionX_options) this.scrollyOnlyNavbarPositionX_options = scrollyOnlyNavbarPositionX_options;
-        if (scrollyOnlyNavbarPositionX_bottomOptions) this.scrollyOnlyNavbarPositionX_bottomOptions = scrollyOnlyNavbarPositionX_bottomOptions;
+    Config({ logoAlignX, logoAlignY, toolsAlignX, toolsAlignY, responsive, navbarFixed, scrollyOnlyNavbar, scrollyOnlyNavbarPositionX_logo, scrollyOnlyNavbarPositionX_options, scrollyOnlyNavbarPositionX_bottomOptions, scrollyBackground, scrollyBackgroundTop }) {
+        if (logoAlignX)
+            this.logoAlignX = logoAlignX;
+        if (toolsAlignX)
+            this.toolsAlignX = toolsAlignX;
+        if (logoAlignY)
+            this.logoAlignY = logoAlignY;
+        if (toolsAlignY)
+            this.toolsAlignY = toolsAlignY;
+        if (responsive)
+            this.responsive = responsive;
+        if (navbarFixed)
+            this.navbarFixed = navbarFixed;
+        if (scrollyOnlyNavbar)
+            this.scrollyOnlyNavbar = scrollyOnlyNavbar;
+        if (scrollyBackground)
+            this.scrollyBackground = scrollyBackground;
+        if (scrollyBackgroundTop)
+            this.scrollyBackgroundTop = scrollyBackgroundTop;
+        if (scrollyOnlyNavbarPositionX_logo)
+            this.scrollyOnlyNavbarPositionX_logo = scrollyOnlyNavbarPositionX_logo;
+        if (scrollyOnlyNavbarPositionX_options)
+            this.scrollyOnlyNavbarPositionX_options = scrollyOnlyNavbarPositionX_options;
+        if (scrollyOnlyNavbarPositionX_bottomOptions)
+            this.scrollyOnlyNavbarPositionX_bottomOptions = scrollyOnlyNavbarPositionX_bottomOptions;
     }
-
     Init() {
         const { navbarRef, responsive } = this;
-        const containerInit: HTMLElement = document.querySelector(navbarRef);
-        const logo: HTMLElement = containerInit.querySelector("[ec-logo]")
-        const option: HTMLElement = containerInit.querySelector("div[ec-options]")
-        const navbarOptions: NodeListOf<HTMLElement> = containerInit.querySelectorAll(`${navbarRef} li[id]`);
-
+        const containerInit = document.querySelector(navbarRef);
+        const logo = containerInit.querySelector("[ec-logo]");
+        const option = containerInit.querySelector("div[ec-options]");
+        const navbarOptions = containerInit.querySelectorAll(`${navbarRef} li[id]`);
+        containerInit.style.zIndex = "9999";
         var responsiveInit = { ...this };
-
-        function alignHandler(itemAlignX: alignX, itemAlignY: alignY, item: HTMLElement) {
+        function alignHandler(itemAlignX, itemAlignY, item) {
             if (window.innerWidth > 1023) {
                 switch (itemAlignX) {
                     case "center":
-                        item.style.gridColumnStart = "4"
+                        item.style.gridColumnStart = "4";
                         break;
-                    case "end": item.style.gridColumnStart = "7"
+                    case "end":
+                        item.style.gridColumnStart = "7";
                         break;
-                    case "start": item.style.gridColumnStart = "1"
+                    case "start":
+                        item.style.gridColumnStart = "1";
                         break;
                 }
                 switch (itemAlignY) {
-                    case "start": item.style.gridRowStart = "1"
+                    case "start":
+                        item.style.gridRowStart = "1";
                         break;
-                    case "end": item.style.gridRowStart = "2"
+                    case "end":
+                        item.style.gridRowStart = "2";
                         break;
                 }
-            } else {
+            }
+            else {
                 switch (itemAlignX) {
                     case "center":
-                        item.style.gridColumnStart = "2"
+                        item.style.gridColumnStart = "2";
                         break;
-                    case "end": item.style.gridColumnStart = "3"
+                    case "end":
+                        item.style.gridColumnStart = "3";
                         break;
-                    case "start": item.style.gridColumnStart = "1"
+                    case "start":
+                        item.style.gridColumnStart = "1";
                         break;
                 }
                 switch (itemAlignY) {
-                    case "start": item.style.gridRowStart = "1"
+                    case "start":
+                        item.style.gridRowStart = "1";
                         break;
-                    case "end": item.style.gridRowStart = "2"
+                    case "end":
+                        item.style.gridRowStart = "2";
                         break;
                 }
             }
         }
-
-        function updateAlignItems(
-            logoAlignX: alignX,
-            logoAlignY: alignY,
-            optionAlignX: alignX,
-            optionAlignY: alignY,
-        ) {
+        function updateAlignItems(logoAlignX, logoAlignY, optionAlignX, optionAlignY) {
             alignHandler(logoAlignX, logoAlignY, logo);
-            alignHandler(optionAlignX, optionAlignY, option)
+            alignHandler(optionAlignX, optionAlignY, option);
         }
         updateAlignItems(responsiveInit.logoAlignX, responsiveInit.logoAlignY, responsiveInit.toolsAlignX, responsiveInit.toolsAlignY);
-
         //Mostrar/Não mostrar as informações
         function toggleContextDrop() {
-            function hide(item: HTMLElement, navbar: HTMLElement) {
+            function hide(item, navbar) {
                 item.classList.remove("show");
                 item.classList.add("hide");
                 navbar.classList.remove("active");
             }
-            function show(item: HTMLElement, navbar: HTMLElement) {
+            function show(item, navbar) {
                 item.classList.add("show");
                 item.classList.remove("hide");
                 navbar.classList.add("active");
             }
-
             navbarOptions.forEach(n => {
-                const id: string = n.getAttribute("id");
-                const divReverent: HTMLElement = containerInit.querySelector(`div[ec-drop-target="${id}"]`);
+                const id = n.getAttribute("id");
+                const divReverent = containerInit.querySelector(`div[ec-drop-target="${id}"]`);
                 if (divReverent) {
                     divReverent.classList.add("hide");
-                    n.addEventListener("mouseover", () => show(divReverent, n))
-                    n.addEventListener("touchstart", () => show(divReverent, n))
-                    n.addEventListener("mouseout", () => hide(divReverent, n))
+                    n.addEventListener("mouseover", () => show(divReverent, n));
+                    n.addEventListener("touchstart", () => show(divReverent, n));
+                    n.addEventListener("mouseout", () => hide(divReverent, n));
                     divReverent.addEventListener("mouseover", () => show(divReverent, n));
-                    divReverent.addEventListener("mouseout", () => hide(divReverent, n))
+                    divReverent.addEventListener("mouseout", () => hide(divReverent, n));
                 }
-            })
+            });
         }
         toggleContextDrop();
-
         function valiableFixedNavbar() {
             if (responsiveInit.navbarFixed) {
                 const windowScroll = window.scrollY;
                 if (windowScroll > 0) {
                     containerInit.style.cssText = `position: fixed; width: 100%; `;
-                } else {
+                }
+                else {
                     containerInit.style.cssText = `position: relative; width: 100%; `;
                 }
-            } else {
+            }
+            else {
                 containerInit.style.cssText = `position: relative; width: 100%; `;
             }
         }
-
         function variableBackgroundNavbar() {
             const { scrollyBackground, scrollyBackgroundTop } = responsiveInit;
             const windowScroll = window.scrollY;
@@ -155,42 +143,42 @@ class EC_Navbar {
                     containerInit.style.background = scrollyBackground;
                 else
                     containerInit.style.background = "#fff";
-            } else {
+            }
+            else {
                 if (scrollyBackgroundTop)
-                    containerInit.style.background = scrollyBackgroundTop
+                    containerInit.style.background = scrollyBackgroundTop;
                 else
                     containerInit.style.background = "#fff";
             }
         }
-
         window.addEventListener("scroll", () => {
             valiableFixedNavbar();
             variableBackgroundNavbar();
-        })
+        });
         window.addEventListener("DOMContentLoaded", () => {
             valiableFixedNavbar();
             variableBackgroundNavbar();
-        })
-
+        });
         function valiablePositionScrollOnly() {
             const isTop = window.scrollY === 0;
             if (!isTop) {
                 alignHandler(responsiveInit.scrollyOnlyNavbarPositionX_logo, "start", logo);
                 alignHandler(responsiveInit.scrollyOnlyNavbarPositionX_options, "start", option);
-            } else {
+            }
+            else {
                 alignHandler(responsiveInit.logoAlignX, "start", logo);
                 alignHandler(responsiveInit.toolsAlignX, "start", option);
             }
         }
-        if (responsiveInit.scrollyOnlyNavbar) window.addEventListener("scroll", valiablePositionScrollOnly)
-
+        if (responsiveInit.scrollyOnlyNavbar)
+            window.addEventListener("scroll", valiablePositionScrollOnly);
         function onlyNavbarScrolling() {
             const navbar = containerInit.querySelector("[ec-navbar]");
             if (window.innerWidth > 1023) {
-                const bottomOption: HTMLElement = containerInit.querySelector("[ec-bottom-options]");
+                const bottomOption = containerInit.querySelector("[ec-bottom-options]");
                 function movingBottomOptions() {
                     const isTop = window.scrollY === 0;
-                    const navbarScroll: HTMLElement = document.querySelector(`${navbarRef} [ec-navbar] [ec-bottom-options]`);
+                    const navbarScroll = document.querySelector(`${navbarRef} [ec-navbar] [ec-bottom-options]`);
                     if (!isTop) {
                         if (!navbarScroll) {
                             navbar.appendChild(bottomOption);
@@ -199,7 +187,8 @@ class EC_Navbar {
                             navbar.parentNode.insertBefore(divSaved, navbar.nextSibling);
                             // alignHandler("center", "start", navbarScroll)
                         }
-                    } else {
+                    }
+                    else {
                         if (navbarScroll) {
                             const savedLocalBottom = containerInit.querySelector("[ec-save-local]");
                             savedLocalBottom.after(bottomOption);
@@ -207,19 +196,18 @@ class EC_Navbar {
                         }
                     }
                 }
-
                 function positionStylingBottomOption() {
                     const isTop = window.scrollY === 0;
-                    const navbarScroll: HTMLElement = document.querySelector(`${navbarRef} [ec-navbar] [ec-bottom-options]`);
-                    const drops: NodeListOf<HTMLElement> = containerInit.querySelectorAll("[ec-drop-target]");
-
+                    const navbarScroll = document.querySelector(`${navbarRef} [ec-navbar] [ec-bottom-options]`);
+                    const drops = containerInit.querySelectorAll("[ec-drop-target]");
                     if (!isTop) {
                         if (navbarScroll) {
-                            navbarScroll.style.gridColumnEnd = "span 5"
+                            navbarScroll.style.gridColumnEnd = "span 5";
                             navbarScroll.style.gridRowStart = "1";
                             drops.forEach(d => d.style.top = `${containerInit.clientHeight}px`);
                         }
-                    } else {
+                    }
+                    else {
                         if (!navbarScroll) {
                             bottomOption.removeAttribute("style");
                             drops.forEach(d => d.removeAttribute("style"));
@@ -230,42 +218,37 @@ class EC_Navbar {
                     window.addEventListener("scroll", () => {
                         movingBottomOptions();
                         positionStylingBottomOption();
-                    })
+                    });
                 }
             }
         }
-
         if (responsiveInit.scrollyOnlyNavbar) {
             document.addEventListener("DOMContentLoaded", onlyNavbarScrolling);
         }
-
-
         function toggleMobile() {
-            const btnMobile: HTMLElement = containerInit.querySelector("[ec-mobile-button]");
-            const contextMobile: HTMLElement = containerInit.querySelector("[ec-context-menu-mobile]")
+            const btnMobile = containerInit.querySelector("[ec-mobile-button]");
+            const contextMobile = containerInit.querySelector("[ec-context-menu-mobile]");
             let isShowing = false;
             btnMobile.addEventListener("click", () => {
                 if (isShowing) {
-                    isShowing = !isShowing
+                    isShowing = !isShowing;
                     contextMobile.classList.remove("show");
                     btnMobile.setAttribute("ec-mobile-button", "false");
-                } else {
-                    isShowing = !isShowing
+                }
+                else {
+                    isShowing = !isShowing;
                     contextMobile.classList.add("show");
                     btnMobile.setAttribute("ec-mobile-button", "true");
                 }
-            })
+            });
         }
-
         toggleMobile();
-
         function ContextMenuToMobileContext() {
-            const options = containerInit.querySelector("[ec-options]")
-            const mobileContext = containerInit.querySelector("[ec-context-menu-mobile]")
+            const options = containerInit.querySelector("[ec-options]");
+            const mobileContext = containerInit.querySelector("[ec-context-menu-mobile]");
             const navbar = containerInit.querySelector("[ec-navbar]");
             const bottomContext = containerInit.querySelector("[ec-bottom-options]");
             const windowWidth = window.innerWidth;
-
             //options
             if (windowWidth < 1023)
                 mobileContext.appendChild(options);
@@ -275,21 +258,19 @@ class EC_Navbar {
                     navbar.appendChild(optionsInContextMobile);
             }
             updateAlignItems(responsiveInit.logoAlignX, responsiveInit.logoAlignY, responsiveInit.toolsAlignX, responsiveInit.toolsAlignY);
-
             //bottom-options
             if (windowWidth < 1023) {
                 mobileContext.appendChild(bottomContext);
-            } else {
+            }
+            else {
                 const bottomContextMobile = containerInit.querySelector("[ec-context-menu-mobile] [ec-bottom-options]");
                 if (bottomContextMobile) {
                     navbar.parentNode.insertBefore(bottomContext, navbar.nextSibling);
                 }
             }
         }
-
-        window.addEventListener("resize", ContextMenuToMobileContext)
-        document.addEventListener("DOMContentLoaded", ContextMenuToMobileContext)
-
+        window.addEventListener("resize", ContextMenuToMobileContext);
+        document.addEventListener("DOMContentLoaded", ContextMenuToMobileContext);
         function renderResponsive() {
             const windowWidth = window.innerWidth;
             const findPoint = responsive?.filter(e => e.mediaPoint > windowWidth).pop();
@@ -298,12 +279,10 @@ class EC_Navbar {
             else
                 updateAlignItems(responsiveInit.logoAlignX, responsiveInit.logoAlignY, responsiveInit.toolsAlignX, responsiveInit.toolsAlignY);
         }
-
         document.addEventListener("DOMContentLoaded", () => {
             renderResponsive();
             onlyNavbarScrolling();
-        })
-        document.addEventListener("DOMContentLoaded", renderResponsive)
+        });
+        document.addEventListener("DOMContentLoaded", renderResponsive);
     }
-
 }

@@ -16,12 +16,15 @@ div[ec-tarja] {
     padding: 6px;
 }
 
+
+
+
+
 div[ec-navbar] {
     // padding: 8px;
     // padding-bottom: 32px;
     height: 100%;
     border-bottom: 1px solid $navbar-border;
-    
     display: grid;
     align-items: center;
     width: 100%;
@@ -33,7 +36,7 @@ div[ec-navbar] {
     
     [ec-logo], [ec-logo] img {
         width: 100%;
-        height: 80px;
+        // height: 80px;
         object-fit: cover;
         //  grid-column-start: 1;
         grid-row-start: 1;

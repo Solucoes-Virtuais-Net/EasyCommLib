@@ -7,6 +7,7 @@ class EC_Carousel {
     autoPlay = false
     autoPlay_time = 3000
     returnToInitItem = false
+    reduceWidthScrolling = 0
     responsive = []
     //CONFIGURAÇÕES
     config({
@@ -15,6 +16,7 @@ class EC_Carousel {
         autoPlay,
         autoPlay_time,
         responsive,
+        reduceWidthScrolling,
         returnToInitItem
     }) {
         if (numberItems) this.numberItems = numberItems;
@@ -23,6 +25,7 @@ class EC_Carousel {
         if (autoPlay_time) this.autoPlay_time = autoPlay_time;
         if (responsive) this.responsive = responsive;
         if (returnToInitItem) this.returnToInitItem = returnToInitItem;
+        if (reduceWidthScrolling) this.reduceWidthScrolling = reduceWidthScrolling;
     }
 
     //INICIALIZAÇÃO
@@ -56,7 +59,6 @@ class EC_Carousel {
             containerInner.style.cursor = "grabber"
             containerInner.style.display = "flex"
             containerInner.style.scrollBehavior = "smooth"
-
 
             function loadListCarousel() {
                 containerInner.innerHTML = "";
@@ -108,7 +110,6 @@ class EC_Carousel {
 
             const listItem_find = containerInner.querySelectorAll(".sv-DIC > div");
 
-
             function disableAllItemClickable() {
                 listItem_find.forEach(e => {
                     e.style.pointerEvents = "none";
@@ -128,7 +129,6 @@ class EC_Carousel {
                 containerInner.style.userSelect = 'none';
                 containerInner.style.scrollSnapType = "none";
                 containerInner.style.scrollBehavior = "smooth"
-                // console.log({ e })
                 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                     pos = {
                         left: containerInner.scrollLeft,
@@ -146,7 +146,6 @@ class EC_Carousel {
                         y: e.clientY,
                     };
                 }
-
                 document.addEventListener('mousemove', mouseMoveHandler);
                 document.addEventListener('mouseup', mouseUpHandler);
                 document.addEventListener('touchmove', mouseMoveHandler);
@@ -168,6 +167,7 @@ class EC_Carousel {
                     dx = e.clientX - pos.x;
                     dy = e.clientY - pos.y;
                 }
+
 
                 // Scroll the element
                 containerInner.scrollTop = pos.top - dy;
@@ -290,21 +290,31 @@ class EC_Carousel {
             var isNumberMax = parseInt((numberItemsTotal - responsiveInit.numberItems).toFixed(0)) + 1;
 
             arrowHandle(countStep, isNumberMax);
-
+            let beforeScrollWidth = 0;
             function step() {
                 var scrollWidth = containerInner.scrollLeft;
-                var calcStep = parseInt((scrollWidth / largItem()).toFixed(0));
-                if (calcStep <= isNumberMax) {
-                    countStep = calcStep;
+                let calcStep;
+                if (scrollWidth > beforeScrollWidth)
+                    calcStep = parseInt(((scrollWidth + responsiveInit.reduceWidthScrolling) / largItem()).toFixed(0));
 
-                    setTimeout(() => {
-                        arrowHandle(countStep, isNumberMax)
-                        containerInner.style.scrollBehavior = "smooth"
-                        containerInner.scrollLeft = largItem() * calcStep;
-                    }, 80)
+                if (scrollWidth < beforeScrollWidth)
+                    calcStep = parseInt(((scrollWidth - responsiveInit.reduceWidthScrolling) / largItem()).toFixed(0))
+
+                // console.log({calcStep})
+                if (calcStep !== undefined) {
+                    if (calcStep <= isNumberMax) {
+                        countStep = calcStep;
+
+                        setTimeout(() => {
+                            arrowHandle(countStep, isNumberMax)
+                            containerInner.style.scrollBehavior = "smooth"
+                            containerInner.scrollLeft = largItem() * calcStep;
+                        }, 80)
+                        beforeScrollWidth = scrollWidth;
+                    }
                 } else {
-                    containerInner.style.scrollBehavior = "smooth"
-                    containerInner.scrollLeft = largItem() * isNumberMax;
+                    // containerInner.style.scrollBehavior = "smooth"
+                    // containerInner.scrollLeft = largItem() * isNumberMax;
                 }
 
             }
@@ -510,7 +520,7 @@ class EC_Carousel {
             }
             window.addEventListener("DOMContentLoaded", responsiveObserver, true)
         } else {
-            console.log({"EC_CarouselMessage": `${ref} não encontrada`})
+            console.log({ "EC_CarouselMessage": `${ref} não encontrada` })
         }
     }
 }

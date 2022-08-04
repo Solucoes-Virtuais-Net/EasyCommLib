@@ -5,7 +5,7 @@ componente javascript que se transforma em um carousel customizado e responsivo.
 > Importação
 
 ```javascript
-    <script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Carousel/EC_Carousel%401.1.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Carousel/EC_Carousel%401.1.5.min.js"></script>
 ```
 
 ***Exemplo uso HTML***
@@ -37,6 +37,8 @@ carousel.init();
 **numberItems** - número de itens por scroll.
 
 **distanceItems** - espaçamento entre os itens, o padrão é 20 (20px).
+
+**reduceWidthScrolling** - Reduzir o quanto de movimentação do mouse para scrollar para o próximo slide.
 
 **autoPlay** - Inicializa a rolagem automático, o padrão é **false**.
 

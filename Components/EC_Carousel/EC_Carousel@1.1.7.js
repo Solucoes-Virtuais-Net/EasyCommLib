@@ -42,29 +42,29 @@ class EC_Carousel {
             container.style.position = "relative";
             var container_filhos = container.querySelectorAll(`${ref} > div`);
 
-            var arrowImageLeft = container.querySelector(`${ref} #arrow-left`)
+            var arrowImageLeft = container.querySelector(` #arrow-left`)
             var arrowImageRight = container.querySelector(`${ref} #arrow-right`)
             var arrowImageLeft_disable = container.querySelector(`${ref} #arrow-left-disable`)
             var arrowImageRight_disable = container.querySelector(`${ref} #arrow-right-disable`)
 
             container.innerHTML = "";
             var CreatecontainerInner = document.createElement("div");
-            CreatecontainerInner.classList.add("sv-list");
+            CreatecontainerInner.classList.add("ec-list");
             CreatecontainerInner.style.width = window.innerWidth;
             CreatecontainerInner.style.overflowX = "hidden";
             CreatecontainerInner.style.position = "relative";
 
             container.append(CreatecontainerInner);
-            var containerInner = document.querySelector(`${ref} > .sv-list`);
-            containerInner.style.cursor = "grabber"
-            containerInner.style.display = "flex"
-            containerInner.style.scrollBehavior = "smooth"
+            var containerList = document.querySelector(`${ref} > .ec-list`);
+            containerList.style.cursor = "grabber"
+            containerList.style.display = "flex"
+            containerList.style.scrollBehavior = "smooth"
 
             function loadListCarousel() {
-                containerInner.innerHTML = "";
+                containerList.innerHTML = "";
                 function newDIC() {
                     var DIC = document.createElement("div");
-                    DIC.classList.add("sv-DIC")
+                    DIC.classList.add("ec-DIC")
                     DIC.style.display = "grid";
                     DIC.style.gap = `${responsiveInit.distanceItems}px`;
                     DIC.style.paddingLeft = `${responsiveInit.distanceItems / 2}px`;
@@ -77,7 +77,7 @@ class EC_Carousel {
                     DIC.style.scrollSnapAlign = "start";
                     return DIC;
                 }
-                containerInner.appendChild(newDIC());
+                containerList.appendChild(newDIC());
 
                 for (let index = 0; index < container_filhos.length; index++) {
                     var containerItem = container_filhos[index];
@@ -88,7 +88,7 @@ class EC_Carousel {
 
                     var fragment = document.createDocumentFragment();
                     // containerItem.style.pointerEvents = 'none';
-                    var DICs = document.querySelectorAll(`${ref} .sv-list > .sv-DIC`);
+                    var DICs = document.querySelectorAll(`${ref} .ec-list > .ec-DIC`);
                     var getLastDIC = DICs[DICs.length - 1];
                     var numberItemsValid = (getLastDIC.childNodes.length + 1) <= responsiveInit.numberItems;
                     if (numberItemsValid) {
@@ -97,8 +97,8 @@ class EC_Carousel {
                     }
                     else {
                         fragment.appendChild(containerItem)
-                        containerInner.appendChild(newDIC());
-                        var getUpdateList = document.querySelectorAll(`${ref} .sv-list > .sv-DIC`);
+                        containerList.appendChild(newDIC());
+                        var getUpdateList = document.querySelectorAll(`${ref} .ec-list > .ec-DIC`);
                         var newLastDIC = getUpdateList[getUpdateList.length - 1];
                         newLastDIC.append(fragment);
                     }
@@ -108,7 +108,7 @@ class EC_Carousel {
 
             loadListCarousel();
 
-            const listItem_find = containerInner.querySelectorAll(".sv-DIC > div");
+            const listItem_find = containerList.querySelectorAll(`${ref} .ec-DIC > div`);
 
             function disableAllItemClickable() {
                 listItem_find.forEach(e => {
@@ -125,22 +125,22 @@ class EC_Carousel {
             let pos = { top: 0, left: 0, x: 0, y: 0 };
 
             const mouseDownHandler = function (e) {
-                containerInner.style.cursor = 'grabbing';
-                containerInner.style.userSelect = 'none';
-                containerInner.style.scrollSnapType = "none";
-                containerInner.style.scrollBehavior = "smooth"
+                containerList.style.cursor = 'grabbing';
+                containerList.style.userSelect = 'none';
+                containerList.style.scrollSnapType = "none";
+                containerList.style.scrollBehavior = "smooth"
                 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                     pos = {
-                        left: containerInner.scrollLeft,
-                        top: containerInner.scrollTop,
+                        left: containerList.scrollLeft,
+                        top: containerList.scrollTop,
                         // Get the current mouse position
                         x: e.changedTouches[0].clientX,
                         y: e.changedTouches[0].clientY,
                     };
                 } else {
                     pos = {
-                        left: containerInner.scrollLeft,
-                        top: containerInner.scrollTop,
+                        left: containerList.scrollLeft,
+                        top: containerList.scrollTop,
                         // Get the current mouse position
                         x: e.clientX,
                         y: e.clientY,
@@ -153,7 +153,7 @@ class EC_Carousel {
             };
 
             const mouseMoveHandler = function (e) {
-                containerInner.style.scrollBehavior = "auto"
+                containerList.style.scrollBehavior = "auto"
                 disableAllItemClickable();
 
                 // How far the mouse has been moved
@@ -170,16 +170,16 @@ class EC_Carousel {
 
 
                 // Scroll the element
-                containerInner.scrollTop = pos.top - dy;
-                containerInner.scrollLeft = pos.left - dx;
+                containerList.scrollTop = pos.top - dy;
+                containerList.scrollLeft = pos.left - dx;
             };
 
             const mouseUpHandler = function () {
-                containerInner.style.cursor = 'grab';
-                containerInner.style.removeProperty('user-select');
-                // containerInner.style.scrollSnapType = "x mandatory";
+                containerList.style.cursor = 'grab';
+                containerList.style.removeProperty('user-select');
+                // containerList.style.scrollSnapType = "x mandatory";
 
-                // containerInner.style.scrollBehavior = "initial
+                // containerList.style.scrollBehavior = "initial
 
 
 
@@ -190,13 +190,13 @@ class EC_Carousel {
                 window.removeEventListener('touchend', mouseUpHandler);
                 enableAllItemClickable();
             };
-            containerInner.addEventListener('mousedown', mouseDownHandler);
-            containerInner.addEventListener('touchstart', mouseDownHandler);
+            containerList.addEventListener('mousedown', mouseDownHandler);
+            containerList.addEventListener('touchstart', mouseDownHandler);
 
 
             // ARROWS
             var arrows = document.createElement("div");
-            arrows.classList.add("sv-arrows");
+            arrows.classList.add("ec-arrows");
             arrows.style.position = "absolute"
             arrows.style.top = "50%"
             arrows.style.transform = "translateY(-50%)"
@@ -217,7 +217,7 @@ class EC_Carousel {
 
             //LARGURA TOTAL DE UM ITEM
             function largItem() {
-                var widthItem = container.querySelector(`.sv-list .sv-DIC > div`);
+                var widthItem = container.querySelector(`${ref} .ec-list .ec-DIC > div`);
                 var responseWidthItemStep = widthItem.offsetWidth + responsiveInit.distanceItems;
                 return responseWidthItemStep;
             }
@@ -249,7 +249,7 @@ class EC_Carousel {
                 arrows.appendChild(arrowImageLeft);
             }
 
-            const leftArrow_find = arrows.querySelector(".left")
+            const leftArrow_find = arrows.querySelector(`${ref} .left`)
             leftArrow_find.classList.add("disable");
             leftArrow_find.appendChild(arrowIconCreate("left"))
 
@@ -281,7 +281,7 @@ class EC_Carousel {
                 arrows.appendChild(arrowImageRight);
             }
 
-            var rightArrow_find = arrows.querySelector(".right");
+            var rightArrow_find = arrows.querySelector(` ${ref} .right`);
             rightArrow_find.appendChild(arrowIconCreate("right"))
 
 
@@ -292,7 +292,7 @@ class EC_Carousel {
             arrowHandle(countStep, isNumberMax);
             let beforeScrollWidth = 0;
             function step() {
-                var scrollWidth = containerInner.scrollLeft;
+                var scrollWidth = containerList.scrollLeft;
                 let calcStep;
                 if (scrollWidth > beforeScrollWidth)
                     calcStep = parseInt(((scrollWidth + responsiveInit.reduceWidthScrolling) / largItem()).toFixed(0));
@@ -307,19 +307,19 @@ class EC_Carousel {
 
                         setTimeout(() => {
                             arrowHandle(countStep, isNumberMax)
-                            containerInner.style.scrollBehavior = "smooth"
-                            containerInner.scrollLeft = largItem() * calcStep;
+                            containerList.style.scrollBehavior = "smooth"
+                            containerList.scrollLeft = largItem() * calcStep;
                         }, 80)
                         beforeScrollWidth = scrollWidth;
                     }
                 } else {
-                    // containerInner.style.scrollBehavior = "smooth"
-                    // containerInner.scrollLeft = largItem() * isNumberMax;
+                    // containerList.style.scrollBehavior = "smooth"
+                    // containerList.scrollLeft = largItem() * isNumberMax;
                 }
 
             }
-            containerInner.addEventListener("mouseup", () => step())
-            containerInner.addEventListener("touchend", () => step())
+            containerList.addEventListener("mouseup", () => step())
+            containerList.addEventListener("touchend", () => step())
 
             function arrowHandle(atual, max, direction) {
                 // console.log({ atual, max })
@@ -370,24 +370,24 @@ class EC_Carousel {
                     enableLeft();
                     disableRight()
                     if (responsiveInit.returnToInitItem && atual + 1 > max) {
-                        containerInner.style.scrollBehavior = "smooth";
-                        containerInner.scrollLeft = 0;
+                        containerList.style.scrollBehavior = "smooth";
+                        containerList.scrollLeft = 0;
                         countStep = 0;
                         disableLeft();
                     }
                 }
 
                 if (direction === "left") {
-                    containerInner.style.scrollBehavior = "smooth";
-                    containerInner.scrollLeft += -largItem();
+                    containerList.style.scrollBehavior = "smooth";
+                    containerList.scrollLeft += -largItem();
                 } else if (direction === "right") {
                     if (atual + 1 <= max) {
-                        containerInner.style.scrollBehavior = "smooth";
-                        containerInner.scrollLeft += largItem();
+                        containerList.style.scrollBehavior = "smooth";
+                        containerList.scrollLeft += largItem();
                     } else;
                 } else if (direction === null || direction === undefined) {
-                    containerInner.style.scrollBehavior = "smooth";
-                    containerInner.scrollLeft = largItem() * atual;
+                    containerList.style.scrollBehavior = "smooth";
+                    containerList.scrollLeft = largItem() * atual;
                 } else {
                     throw new Error("deu ruim!!!")
                 }
@@ -414,7 +414,7 @@ class EC_Carousel {
 
             function createContainerDots() {
                 var containerDot = document.createElement("div");
-                containerDot.classList.add("sv-dots");
+                containerDot.classList.add("ec-dots");
                 containerDot.style.position = "absolute";
                 containerDot.style.bottom = '-20px';
                 containerDot.style.width = '100%';
@@ -427,11 +427,11 @@ class EC_Carousel {
             container.append(createContainerDots())
 
             function importDotsItems() {
-                var dotContainer = container.querySelector(".sv-dots");
+                var dotContainer = container.querySelector(".ec-dots");
                 dotContainer.innerHTML = "";
                 for (let index = 0; index < isNumberMax; index++) {
                     var dot = document.createElement("button");
-                    dot.classList.add("dot");
+                    dot.classList.add("ec-dot");
                     dot.style.padding = "8px";
                     dot.style.margin = "4px"
                     dotContainer.appendChild(dot);
@@ -441,7 +441,7 @@ class EC_Carousel {
 
 
             function dotActiveHandle() {
-                var dotsList = document.querySelectorAll(".sv-dots > .dot");
+                var dotsList = document.querySelectorAll(`${ref} .ec-dots > .ec-dot`);
                 function clearActiveDots(dt) {
                     dt.forEach(d => {
                         d.classList.remove("active");
@@ -453,7 +453,7 @@ class EC_Carousel {
             }
 
             function dotsHandleClick() {
-                var dotsList = document.querySelectorAll(".sv-dots > .dot");
+                var dotsList = document.querySelectorAll(`${ref} .ec-dots > .ec-dot`);
                 for (let index = 0; index < dotsList.length; index++) {
                     const d = dotsList[index];
 
@@ -468,8 +468,8 @@ class EC_Carousel {
                 }
             }
 
-            containerInner.addEventListener("mouseup", dotActiveHandle)
-            containerInner.addEventListener("touchend", dotActiveHandle)
+            containerList.addEventListener("mouseup", dotActiveHandle)
+            containerList.addEventListener("touchend", dotActiveHandle)
             dotsHandleClick();
             dotActiveHandle();
 
@@ -492,10 +492,10 @@ class EC_Carousel {
                     return initialInterval;
                 }
                 intervalNumber = interval();
-                containerInner.addEventListener("mousemove", () => isPaused = true)
-                containerInner.addEventListener("mouseleave", () => isPaused = false);
-                containerInner.addEventListener("touchmove", () => isPaused = true)
-                containerInner.addEventListener("touchend", () => isPaused = false);
+                containerList.addEventListener("mousemove", () => isPaused = true)
+                containerList.addEventListener("mouseleave", () => isPaused = false);
+                containerList.addEventListener("touchmove", () => isPaused = true)
+                containerList.addEventListener("touchend", () => isPaused = false);
             }
 
             if (responsiveInit.autoPlay) autoPlayInit();

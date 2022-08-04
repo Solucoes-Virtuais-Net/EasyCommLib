@@ -299,11 +299,11 @@ class EC_Carousel {
                 if (scrollWidth < beforeScrollWidth)
                     calcStep = parseInt(((scrollWidth - responsiveInit.reduceWidthScrolling) / largItem()).toFixed(0))
 
-                console.log({
-                    "itemWidth": largItem(),
-                    "reduce": responsiveInit.reduceWidthScrolling,
-                    "calcStep": calcStep
-                })
+                // console.log({
+                //     "itemWidth": largItem(),
+                //     "reduce": responsiveInit.reduceWidthScrolling,
+                //     "calcStep": calcStep
+                // })
                 // console.log({calcStep})
                 if (calcStep !== undefined) {
                     if (calcStep <= isNumberMax) {

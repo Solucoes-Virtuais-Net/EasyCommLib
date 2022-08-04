@@ -26,7 +26,7 @@
         </div>
     </div>
 </div>
-    <script src="./EC_Carousel@1.1.7.js"></script>
+    <script src="./EC_Carousel@1.1.8.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Carousel/EC_Carousel%401.1.4.min.js"></script> -->
     <script>
 
@@ -34,10 +34,21 @@
         c.config({
             numberItems: 1,
             autoPlay: true,
-            reduceWidthScrolling: 600
+            reduceWidthScrolling: 600,
+            responsive: [
+            {
+                mediaPoint: 762,
+                reduceWidthScrolling: 400,
+                autoPlay: false
+            },
+            {
+                mediaPoint: 1800,
+                reduceWidthScrolling: 400,
+                autoPlay: false
+            },
+        ]
         })
-        c.init();
-    
+        c.init();    
 
     </script>
 </body>

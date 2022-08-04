@@ -174,11 +174,15 @@ class EC_Navbar {
         function valiablePositionScrollOnly() {
             const isTop = window.scrollY === 0;
             if (!isTop) {
-                alignHandler(responsiveInit.scrollyOnlyNavbarPositionX_logo, "start", logo);
-                alignHandler(responsiveInit.scrollyOnlyNavbarPositionX_options, "start", option);
+                if (window.innerWidth > 762) {
+                    alignHandler(responsiveInit.scrollyOnlyNavbarPositionX_logo, "start", logo);
+                    alignHandler(responsiveInit.scrollyOnlyNavbarPositionX_options, "start", option);
+                }
             } else {
-                alignHandler(responsiveInit.logoAlignX, "start", logo);
-                alignHandler(responsiveInit.toolsAlignX, "start", option);
+                if (window.innerWidth > 762) {
+                    alignHandler(responsiveInit.logoAlignX, "start", logo);
+                    alignHandler(responsiveInit.toolsAlignX, "start", option);
+                }
             }
         }
         if (responsiveInit.scrollyOnlyNavbar) window.addEventListener("scroll", valiablePositionScrollOnly)

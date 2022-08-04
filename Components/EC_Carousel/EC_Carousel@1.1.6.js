@@ -398,7 +398,7 @@ class EC_Carousel {
                 countStep -= 1;
                 arrowHandle(countStep, isNumberMax, "left");
                 dotActiveHandle();
-                autoPlayInit();
+                if (responsiveInit.autoPlay) autoPlayInit();
             })
 
             //NEXT
@@ -406,7 +406,7 @@ class EC_Carousel {
                 countStep += 1;
                 arrowHandle(countStep, isNumberMax, "right")
                 dotActiveHandle();
-                autoPlayInit();
+                if (responsiveInit.autoPlay) autoPlayInit();
             })
 
 
@@ -462,7 +462,7 @@ class EC_Carousel {
                             countStep = index;
                             dotActiveHandle();
                             arrowHandle(countStep, isNumberMax);
-                            autoPlayInit();
+                            if (responsiveInit.autoPlay) autoPlayInit();
                         }, 80);
                     })
                 }

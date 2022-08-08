@@ -1,19 +1,17 @@
-# EC_Navbar (v1.2.3)
+# EC_Navbar (v1.2.5)
 
 Primeiro componente navbar para ecommerce.
 
 > inserindo o css
 ```html
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Navbar/styles/EC_navbar@1.2.3.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Navbar/styles/EC_navbar@1.2.4.min.css">
 ```
 
 > inserindo o javascript
  ```javascript
 <script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Navbar/EC_Navbar%401.2.5.js"></script>
 ```
-
 ## Exemplo
-
 
 ###  HTML
 ```html
@@ -48,13 +46,16 @@ Primeiro componente navbar para ecommerce.
                 <ul>
                     <li id="exemplo2">
                         <a>exemplo2</a>
+                        <div class="ec-arrow-drop"></div>
                     </li>
                 </ul>
                 <div ec-drop-target="exemplo1">
                     exemplo1
+                    <div class="ec-arrow-drop"></div>
                 </div>
                 <div ec-drop-target="exemplo2">
                     exemplo2
+                    <div class="ec-arrow-drop"></div>
                 </div>
             </div>
         </nav>
@@ -112,9 +113,11 @@ dentro de seu elemento pai (com o id #init por exemplo), você pode inserir atri
             <ul>
                 <li id="exemplo1">
                     <a>link exemplo 1</a>
+                    <div class="ec-arrow-drop"></div>
                 </li>
                 <li id="exemplo2">
                     <a>link exemplo2</a>
+                    <div class="ec-arrow-drop"></div>
                 </li>
             </ul>
             <div ec-drop-target="exemplo1">
@@ -175,7 +178,7 @@ Aplique também dentro de uma outra div que tenha um atributo chamado **ec-conte
 | `navbarFixed`                              | `boolean`                    | Navbar ser fixado (ou não).                                                                                                                                                                                                                                                                   |
 | `scrollyOnlyNavbar`                        | `boolean`                    | Tornar um único navbar unido quando o scroll da página for diferente de 0.                                                                                                                                                                                                                    |
 | `scrollyBackground`                        | `string`                     | Cor de fundo do navbar se o scroll da página for diferente de 0.                                                                                                                                                                                                                              |
-| `scrollyBackgroundTop`                     | `string`                     | Cor de fundo do navbar se o scroll da página for igual a 0.                                                                                                                                                                                                                              |
+| `scrollyBackgroundTop`                     | `string`                     | Cor de fundo do navbar se o scroll da página for igual a 0.                                                                                                                                                                                                                                   |
 | `scrollyOnlyNavbarPositionX_logo`          | `"center", "end" ou "start"` | Posicionamento da logo quando o scroll do window for diferente de 0.                                                                                                                                                                                                                          |
 | `scrollyOnlyNavbarPositionX_options`       | `"center", "end" ou "start"` | Posicionamento do option quando o scroll do window for diferente de 0.                                                                                                                                                                                                                        |
 | `scrollyOnlyNavbarPositionX_bottomOptions` | `"center", "end" ou "start"` | Posicionamento do bottomOption quando o scroll do window for diferente de 0.                                                                                                                                                                                                                  |

@@ -48,6 +48,7 @@ class EC_Navbar {
         if (scrollyOnlyNavbarPositionX_logo) this.scrollyOnlyNavbarPositionX_logo = scrollyOnlyNavbarPositionX_logo;
         if (scrollyOnlyNavbarPositionX_options) this.scrollyOnlyNavbarPositionX_options = scrollyOnlyNavbarPositionX_options;
         if (scrollyOnlyNavbarPositionX_bottomOptions) this.scrollyOnlyNavbarPositionX_bottomOptions = scrollyOnlyNavbarPositionX_bottomOptions;
+
     }
 
     Init() {

@@ -1,4 +1,4 @@
-# EC-Carousel@1.1.7
+# EC-Carousel@1.1.10
 
 componente javascript que se transforma em um carousel customizado e responsivo.
 
@@ -97,4 +97,6 @@ insere os id's de acordo com o que estão acima e em seguida inserir as imagens 
  
 
 
+ > ## Regras
 
+ no responsive, use todas as propriedades possíveis que esteja usando na responsividade.

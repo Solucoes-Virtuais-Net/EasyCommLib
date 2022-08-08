@@ -27,24 +27,26 @@
         </div>
     </div>
 </div>
-    <script src="./EC_Carousel@1.1.9.js"></script>
+    <script src="./EC_Carousel@1.1.10.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Carousel/EC_Carousel%401.1.4.min.js"></script> -->
     <script>
 
         const c = new EC_Carousel("#carousel-init");
         c.config({
-            numberItems: 1,
+            numberItems: 3,
             autoPlay: false,
             reduceWidthScrolling: 1600,
             responsive: [
             {
                 mediaPoint: 762,
+                numberItems: 1,
                 reduceWidthScrolling: 0,
                 autoPlay: false
             },
             {
-                mediaPoint: 1800,
-                reduceWidthScrolling: 400,
+                mediaPoint: 1280,
+                numberItems: 3,
+                reduceWidthScrolling: 0,
                 autoPlay: false
             },
         ]

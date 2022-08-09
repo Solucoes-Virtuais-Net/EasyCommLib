@@ -1,11 +1,11 @@
-# EC-Carousel@1.1.11
+# EC-Carousel@1.1.12
 
 componente javascript que se transforma em um carousel customizado e responsivo.
 
 > Importação
 
 ```javascript
-    <script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Carousel/EC_Carousel%401.1.11.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Carousel/EC_Carousel%401.1.12.min.js"></script>
 ```
 
 ***Exemplo uso HTML***

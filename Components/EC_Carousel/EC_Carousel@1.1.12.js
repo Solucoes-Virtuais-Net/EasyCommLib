@@ -1,4 +1,4 @@
-class EC_CarouselPbe {
+class EC_Carousel {
     constructor(ref) {
         this.ref = ref
     }

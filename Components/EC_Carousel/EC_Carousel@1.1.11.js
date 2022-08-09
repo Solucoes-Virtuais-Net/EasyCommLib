@@ -36,6 +36,7 @@ class EC_Carousel {
         } = this;
 
         var responsiveInit = { ...this };
+        var save_responsiveInit = { ...this };
         var container = document.querySelector(ref);
         if (container !== null && container !== undefined) {
 
@@ -50,7 +51,7 @@ class EC_Carousel {
             container.innerHTML = "";
             var CreatecontainerInner = document.createElement("div");
             CreatecontainerInner.classList.add("ec-list");
-            CreatecontainerInner.style.width = window.innerWidth;
+            CreatecontainerInner.style.width = "100%";
             CreatecontainerInner.style.overflowX = "hidden";
             CreatecontainerInner.style.position = "relative";
 
@@ -72,7 +73,7 @@ class EC_Carousel {
                     DIC.style.paddingTop = '20px';
                     DIC.style.paddingBottom = '20px';
                     DIC.style.gridTemplateColumns = `repeat(${responsiveInit.numberItems}, 1fr)`;
-                    DIC.style.minWidth = "100%";
+                    DIC.style.minWidth = '100%';
                     // DIC.style.pointerEvents = 'none';
                     DIC.style.scrollSnapAlign = "start";
                     return DIC;
@@ -82,12 +83,9 @@ class EC_Carousel {
                 for (let index = 0; index < container_filhos.length; index++) {
                     var containerItem = container_filhos[index];
                     var itemsImage = containerItem.querySelectorAll("img")
-                    itemsImage.forEach(e => {
-                        e.setAttribute("draggable", "false");
-                    })
+                    itemsImage.forEach(e => {e.setAttribute("draggable", "false");})
 
                     var fragment = document.createDocumentFragment();
-                    // containerItem.style.pointerEvents = 'none';
                     var DICs = document.querySelectorAll(`${ref} .ec-list > .ec-DIC`);
                     var getLastDIC = DICs[DICs.length - 1];
                     var numberItemsValid = (getLastDIC.childNodes.length + 1) <= responsiveInit.numberItems;
@@ -304,9 +302,9 @@ class EC_Carousel {
                 //     "reduce": responsiveInit.reduceWidthScrolling,
                 //     "calcStep": calcStep
                 // })
-                // console.log({calcStep})
+       
                 if (calcStep !== undefined) {
-                    if (calcStep <= isNumberMax) {
+                    // if (calcStep <= isNumberMax) {
                         countStep = calcStep;
 
                         setTimeout(() => {
@@ -315,10 +313,10 @@ class EC_Carousel {
                             containerList.scrollLeft = largItem() * calcStep;
                         }, 80)
                         beforeScrollWidth = scrollWidth;
-                    }
+                    // }
                 } else {
-                    // containerList.style.scrollBehavior = "smooth"
-                    // containerList.scrollLeft = largItem() * isNumberMax;
+                    containerList.style.scrollBehavior = "smooth"
+                    containerList.scrollLeft = largItem() * isNumberMax;
                 }
 
             }
@@ -516,14 +514,8 @@ class EC_Carousel {
             function responsiveObserver() {
                 var windowWidth = window.innerWidth;
                 var findPointActive = responsive.filter(r => r.mediaPoint > windowWidth).sort(sortMediaPoint).shift();
+                // console.log(findPointActive);
                 if (findPointActive) {
-
-                    // if (numberItems) this.numberItems = numberItems;
-                    // if (distanceItems) this.distanceItems = distanceItems;
-                    // if (autoPlay) this.autoPlay = autoPlay;
-                    // if (autoPlay_time) this.autoPlay_time = autoPlay_time;
-                    // if (returnToInitItem) this.returnToInitItem = returnToInitItem;
-                    // if (reduceWidthScrolling) this.reduceWidthScrolling = reduceWidthScrolling;
 
                     if (findPointActive.numberItems !== undefined)
                         responsiveInit.numberItems = findPointActive.numberItems
@@ -537,9 +529,21 @@ class EC_Carousel {
                         responsiveInit.reduceWidthScrolling = findPointActive.reduceWidthScrolling
                     if (findPointActive.returnToInitItem !== undefined)
                         responsiveInit.returnToInitItem = findPointActive.returnToInitItem
-                    loadListCarousel();
                     if (responsiveInit.autoPlay) autoPlayInit();
-
+                    loadListCarousel();
+                    importDotsItems();
+                    dotActiveHandle();
+                    dotsHandleClick();
+                    updateIsNumberMax();
+                } else {
+                        responsiveInit.numberItems = save_responsiveInit.numberItems
+                        responsiveInit.distanceItems = save_responsiveInit.distanceItems
+                        responsiveInit.autoPlay = save_responsiveInit.autoPlay
+                        responsiveInit.autoPlay_time = save_responsiveInit.autoPlay_time
+                        responsiveInit.reduceWidthScrolling = save_responsiveInit.reduceWidthScrolling
+                        responsiveInit.returnToInitItem = save_responsiveInit.returnToInitItem
+                    if (responsiveInit.autoPlay) autoPlayInit();
+                    loadListCarousel();
                     importDotsItems();
                     dotActiveHandle();
                     dotsHandleClick();
@@ -547,7 +551,6 @@ class EC_Carousel {
                 }
             }
             document.addEventListener("load", responsiveObserver, true);
-            window.addEventListener("DOMContentLoaded", responsiveObserver, true)
             window.addEventListener("resize", responsiveObserver, true)
         } else {
             console.log({ "EC_CarouselMessage": `${ref} não encontrada` })

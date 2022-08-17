@@ -138,9 +138,9 @@ class EC_Navbar {
             if (responsiveInit.navbarFixed) {
                 const windowScroll = window.scrollY;
                 if (windowScroll > 0) {
-                    containerInit.style.cssText = `position: fixed; width: 100%; `;
+                    containerInit.style.cssText = `position: fixed; width: 100%; z-index: 999px; `;
                 } else {
-                    containerInit.style.cssText = `position: relative; width: 100%; `;
+                    containerInit.style.cssText = `position: relative; width: 100%; z-index: 999px; `;
                 }
             } else {
                 containerInit.style.cssText = `position: relative; width: 100%; `;

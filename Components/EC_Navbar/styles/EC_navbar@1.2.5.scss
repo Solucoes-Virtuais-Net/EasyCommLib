@@ -145,6 +145,7 @@ div[ec-navbar] {
     div[ec-bottom-options] {
         padding: 0 !important;
         ul {
+            margin: 0 !important;
             li {
                 &[id].active {
                     &:before {

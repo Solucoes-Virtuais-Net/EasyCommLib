@@ -1,4 +1,4 @@
-# EC_Navbar (v1.2.5)
+# EC_Navbar (v1.3.0)
 
 Primeiro componente navbar para ecommerce.
 
@@ -9,7 +9,7 @@ Primeiro componente navbar para ecommerce.
 
 > inserindo o javascript
  ```javascript
-<script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Navbar/EC_Navbar%401.2.7.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Solucoes-Virtuais-Net/EasyCommLib/Components/EC_Navbar/EC_Navbar%401.3.0.js"></script>
 ```
 ## Exemplo
 
@@ -85,6 +85,10 @@ Primeiro componente navbar para ecommerce.
             scrollyOnlyNavbarPositionX_options: "start",
             scrollyOnlyNavbarPositionX_bottomOptions: "center",
 
+            initNavbarFixedHeight: 180,
+            initNavbarFixedHeightPosition: 180,
+            initScrollyOnlyNavbarHeight: 180,
+
             responsive: [
                 {
                     mediaPoint: 762,
@@ -108,6 +112,12 @@ dentro de seu elemento pai (com o id #init por exemplo), você pode inserir atri
 - `ec-options` -  insere-o em um elemento que será inserido dentro deles outros elementos filhos. Também precisa ser inserido dentro do pai `ec-navbar`.
 - `ec-bottom-options` - as opções no navbar de baixo do navbar superior. 
 - `ec-drop-target` - atributo onde vai ser implementado o contexto de um **dropdown**. Mas para que isso funcione, um item de uma lista precisa ter em seu id os mesmos valores que os valores do ec-drop-target, por exemplo:
+
+- `initNavbarFixedHeight` - Especifique a altura que indica quando inicia a ação do navbar ficar fixed.
+- `initNavbarFixedHeightPosition` - Especifique a altura que indica a ação da posição do navbar, options, etc. 
+- `initScrollyOnlyNavbarHeight` -  Especifique a altura que indica a ação do `onlyNavbar` do navbar.
+
+
   ```html
         <div ec-bottom-options>
             <ul>
